@@ -3,7 +3,7 @@ import 'package:digify_security_console/l10n/security_console_localizations.dart
 import 'package:digify_core/theme/app_shadows.dart';
 import 'package:digify_core/widgets/common/pagination_controls.dart';
 import 'package:digify_core/widgets/common/scrollable_wrapper.dart';
-import 'package:digify_security_console/security_console/workforce_bridge/time_management/domain/models/pagination_info.dart';
+import 'package:digify_core/models/pagination_info.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/domain/models/position.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/providers/position_providers.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/widgets/positions/table/position_table_header.dart';

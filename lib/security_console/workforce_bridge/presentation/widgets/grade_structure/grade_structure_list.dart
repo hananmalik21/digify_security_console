@@ -2,7 +2,7 @@ import 'package:digify_core/constants/app_colors.dart';
 import 'package:digify_security_console/l10n/security_console_localizations.dart';
 import 'package:digify_core/widgets/common/digify_error_state.dart';
 import 'package:digify_core/widgets/common/pagination_controls.dart';
-import 'package:digify_security_console/security_console/workforce_bridge/time_management/domain/models/pagination_info.dart';
+import 'package:digify_core/models/pagination_info.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/providers/grade_providers.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/widgets/grade_structure/grade_structure_card.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/widgets/grade_structure/grade_structure_skeleton.dart';

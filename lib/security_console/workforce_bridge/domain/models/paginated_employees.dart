@@ -1,4 +1,4 @@
-import 'package:digify_security_console/security_console/workforce_bridge/time_management/domain/models/pagination_info.dart';
+import 'package:digify_core/models/pagination_info.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/domain/models/employee.dart';
 
 class PaginatedEmployees {

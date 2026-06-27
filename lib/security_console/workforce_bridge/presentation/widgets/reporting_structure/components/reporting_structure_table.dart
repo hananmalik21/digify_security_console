@@ -5,7 +5,7 @@ import 'package:digify_core/theme/theme_extensions.dart';
 import 'package:digify_core/widgets/common/digify_error_state.dart';
 import 'package:digify_core/widgets/common/pagination_controls.dart';
 import 'package:digify_core/widgets/common/scrollable_wrapper.dart';
-import 'package:digify_security_console/security_console/workforce_bridge/time_management/domain/models/pagination_info.dart';
+import 'package:digify_core/models/pagination_info.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/domain/models/reporting_position.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/providers/reporting_structure_provider.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/widgets/reporting_structure/table/reporting_table_header.dart';

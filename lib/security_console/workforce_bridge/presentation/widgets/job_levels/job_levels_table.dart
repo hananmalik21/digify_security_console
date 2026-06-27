@@ -6,7 +6,7 @@ import 'package:digify_core/widgets/common/digify_error_state.dart';
 import 'package:digify_core/widgets/common/scrollable_wrapper.dart';
 import 'package:digify_core/services/pagination_service.dart';
 import 'package:digify_core/widgets/common/pagination_controls.dart';
-import 'package:digify_security_console/security_console/workforce_bridge/time_management/domain/models/pagination_info.dart';
+import 'package:digify_core/models/pagination_info.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/domain/models/job_level.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/widgets/job_levels/job_level_row.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/widgets/job_levels/table/job_level_table_header.dart';

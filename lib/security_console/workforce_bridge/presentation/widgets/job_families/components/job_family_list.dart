@@ -1,7 +1,7 @@
 import 'package:digify_security_console/l10n/security_console_localizations.dart';
 import 'package:digify_core/widgets/common/digify_error_state.dart';
 import 'package:digify_core/widgets/common/pagination_controls.dart';
-import 'package:digify_security_console/security_console/workforce_bridge/time_management/domain/models/pagination_info.dart';
+import 'package:digify_core/models/pagination_info.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/providers/job_family_providers.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/providers/job_level_providers.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/widgets/job_families/components/job_family_empty_state.dart';
