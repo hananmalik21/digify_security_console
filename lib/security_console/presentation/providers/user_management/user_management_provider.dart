@@ -77,19 +77,25 @@ class UserManagementState {
 class UserManagementNotifier extends StateNotifier<UserManagementState> {
   final GetUsersUseCase _getUsersUseCase;
   final UserManagementRepository _userManagementRepository;
-  final int? _enterpriseId;
+  final Ref _ref;
   final Debouncer _searchDebouncer = Debouncer(delay: const Duration(milliseconds: 400));
 
-  UserManagementNotifier(this._getUsersUseCase, this._userManagementRepository, this._enterpriseId)
+  UserManagementNotifier(this._getUsersUseCase, this._userManagementRepository, this._ref)
     : super(UserManagementState()) {
     getUsers();
   }
 
   Future<void> getUsers() async {
+    final enterpriseId = _ref.read(userManagementEnterpriseIdProvider);
+    if (enterpriseId == null) {
+      state = state.copyWith(users: const [], isLoading: false, totalItems: 0, totalPages: 1);
+      return;
+    }
+
     state = state.copyWith(isLoading: true);
     try {
       final result = await _getUsersUseCase(
-        enterpriseId: _enterpriseId,
+        enterpriseId: enterpriseId,
         page: state.currentPage,
         limit: state.pageSize,
         searchQuery: state.searchQuery.trim().isEmpty ? null : state.searchQuery.trim(),
@@ -181,10 +187,15 @@ final employeeSelectionProvider = FutureProvider.autoDispose.family<List<SystemU
 });
 
 final userManagementProvider = StateNotifierProvider<UserManagementNotifier, UserManagementState>((ref) {
-  final enterpriseId = ref.watch(userManagementEnterpriseIdProvider);
-  return UserManagementNotifier(
+  final notifier = UserManagementNotifier(
     ref.watch(getUsersUseCaseProvider),
     ref.watch(userManagementRepositoryProvider),
-    enterpriseId,
+    ref,
   );
+  ref.listen<int?>(userManagementEnterpriseIdProvider, (previous, next) {
+    if (previous != next) {
+      notifier.getUsers();
+    }
+  });
+  return notifier;
 });
