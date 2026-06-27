@@ -58,7 +58,6 @@ flutter:
     - assets/icons/header/
     - assets/icons/auth/
     - assets/icons/workforce/
-    - assets/icons/sidebar/
     - assets/icons/leave_management/
     - assets/icons/enterprise_structure/
     - assets/icons/employee_management/

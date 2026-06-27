@@ -767,9 +767,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/settings_main_icon.svg
   SvgGenImage get settingsMainIcon => const SvgGenImage('assets/icons/settings_main_icon.svg');
 
-  /// Directory path: assets/icons/sidebar
-  $AssetsIconsSidebarGen get sidebar => const $AssetsIconsSidebarGen();
-
   /// File path: assets/icons/structure_configuration_icon.svg
   SvgGenImage get structureConfigurationIcon => const SvgGenImage('assets/icons/structure_configuration_icon.svg');
 
@@ -1475,25 +1472,6 @@ class $AssetsIconsSecurityManagerGen {
     terminate,
     warning,
   ];
-}
-
-class $AssetsIconsSidebarGen {
-  const $AssetsIconsSidebarGen();
-
-  /// File path: assets/icons/sidebar/grade-sidebar.svg
-  SvgGenImage get gradeSidebar => const SvgGenImage('assets/icons/sidebar/grade-sidebar.svg');
-
-  /// File path: assets/icons/sidebar/public-holidays.svg
-  SvgGenImage get publicHolidays => const SvgGenImage('assets/icons/sidebar/public-holidays.svg');
-
-  /// File path: assets/icons/sidebar/schedule-assignments.svg
-  SvgGenImage get scheduleAssignments => const SvgGenImage('assets/icons/sidebar/schedule-assignments.svg');
-
-  /// File path: assets/icons/sidebar/work-schedules.svg
-  SvgGenImage get workSchedules => const SvgGenImage('assets/icons/sidebar/work-schedules.svg');
-
-  /// List of all assets
-  List<SvgGenImage> get values => [gradeSidebar, publicHolidays, scheduleAssignments, workSchedules];
 }
 
 class $AssetsIconsWorkforceGen {
