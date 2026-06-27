@@ -1,0 +1,13 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - _vendor/**
+    - lib/security_console/workforce_bridge/presentation/screens/**
+    - lib/security_console/workforce_bridge/time_management/domain/usecases/**
+    - lib/security_console/workforce_bridge/time_management/presentation/providers/work_schedules_provider.dart
+
+linter:
+  rules:
+    prefer_const_constructors: false
+    prefer_const_literals_to_create_immutables: false

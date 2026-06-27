@@ -1,0 +1,9 @@
+import 'package:digify_security_console/security_console/workforce_bridge/domain/models/grade.dart';
+import 'package:digify_security_console/security_console/workforce_bridge/domain/models/grade_response.dart';
+
+abstract class GradeRepository {
+  Future<GradeResponse> getGrades({int page = 1, int pageSize = 10, String? search, int? tenantId});
+  Future<Grade> createGrade(Grade grade, {int? tenantId});
+  Future<Grade> updateGrade(int gradeId, Grade grade, {int? tenantId});
+  Future<void> deleteGrade(int gradeId, {int? tenantId});
+}

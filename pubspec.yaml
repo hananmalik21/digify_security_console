@@ -1,0 +1,64 @@
+name: digify_security_console
+description: Digify Security Console — security and access control Flutter package.
+version: 0.1.0
+publish_to: "none"
+
+environment:
+  sdk: ^3.12.0
+  flutter: ">=3.44.1"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^2.6.1
+  go_router: ^17.2.3
+  dio: ^5.4.0
+  flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.2.3
+  gap: ^3.0.1
+  skeletonizer: ^2.1.2
+  dropdown_button2: ^3.1.0
+  dotted_border: ^3.1.0
+  super_tooltip: ^2.1.1
+  intl: any
+  digify_core:
+    git:
+      url: https://github.com/hananmalik21/digify_core.git
+      ref: main
+  digify_enterprise_structure:
+    git:
+      url: https://github.com/hananmalik21/digify_enterprise_structure.git
+      ref: main
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.4.9
+  flutter_gen_runner: ^5.4.0
+
+flutter_gen:
+  output: lib/gen/
+  line_length: 120
+  integrations:
+    flutter_svg: true
+  assets:
+    enabled: true
+    outputs:
+      class_name: Assets
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/icons/
+    - assets/icons/security_manager/
+    - assets/icons/header/
+    - assets/icons/auth/
+    - assets/icons/workforce/
+    - assets/icons/sidebar/
+    - assets/icons/leave_management/
+    - assets/icons/enterprise_structure/
+    - assets/icons/employee_management/
