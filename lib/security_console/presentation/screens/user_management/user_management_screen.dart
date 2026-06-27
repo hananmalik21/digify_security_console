@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:digify_core/services/responsive_service.dart';
 import '../../providers/user_management/user_management_enterprise_provider.dart';
+import '../../providers/user_management/user_management_provider.dart';
 import 'user_management_desktop_layout.dart';
 import 'user_management_mobile_layout.dart';
 import 'user_management_tablet_layout.dart';
@@ -20,6 +21,14 @@ class UserManagementScreen extends ConsumerStatefulWidget {
 }
 
 class _UserManagementScreenState extends ConsumerState<UserManagementScreen> with UserManagementPermissionMixin {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(userManagementProvider.notifier).getUsers();
+    });
+  }
+
   void _onEnterpriseChanged(int? enterpriseId) {
     ref.read(userManagementSelectedEnterpriseProvider.notifier).setEnterpriseId(enterpriseId);
   }
