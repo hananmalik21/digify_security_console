@@ -3,7 +3,7 @@ import 'package:digify_core/theme/theme_extensions.dart';
 import 'package:digify_enterprise_structure/digify_enterprise_structure.dart';
 import 'package:digify_security_console/security_console/domain/models/active_session.dart';
 import 'package:digify_security_console/security_console/presentation/providers/active_sessions/active_sessions_provider.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:digify_security_console/security_console/presentation/screens/functional_areas/active_sessions/widgets/active_sessions_header.dart';
 import 'package:digify_security_console/security_console/presentation/widgets/active_sessions/active_sessions_auto_refresh_banner.dart';
 import 'package:digify_security_console/security_console/presentation/widgets/active_sessions/active_sessions_distribution_section.dart';
@@ -43,7 +43,7 @@ class _ActiveSessionsScreenState extends ConsumerState<ActiveSessionsScreen> {
     final isDark = context.isDark;
     final state = ref.watch(activeSessionsProvider);
     final notifier = ref.read(activeSessionsProvider.notifier);
-    final effectiveEnterpriseId = ref.watch(securityManagerEnterpriseIdProvider);
+    final effectiveEnterpriseId = ref.watch(activeSessionsEnterpriseIdProvider);
     final activeCount = notifier.countByStatus(ActiveSessionStatus.active);
     final idleCount = notifier.countByStatus(ActiveSessionStatus.idle);
     final lockedCount = notifier.countByStatus(ActiveSessionStatus.locked);
@@ -61,7 +61,7 @@ class _ActiveSessionsScreenState extends ConsumerState<ActiveSessionsScreen> {
             EnterpriseSelectorWidget(
               selectedEnterpriseId: effectiveEnterpriseId,
               onEnterpriseChanged: (enterpriseId) {
-                ref.read(securityManagerSelectedEnterpriseProvider.notifier).setEnterpriseId(enterpriseId);
+                ref.read(activeSessionsSelectedEnterpriseProvider.notifier).setEnterpriseId(enterpriseId);
               },
             ),
             Gap(24.h),

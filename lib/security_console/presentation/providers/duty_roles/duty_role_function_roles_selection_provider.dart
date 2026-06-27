@@ -4,7 +4,7 @@ import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/data/repositories/function_roles/function_roles_repository_impl.dart';
 import 'package:digify_security_console/security_console/domain/usecases/get_function_roles_use_case.dart';
 import 'package:digify_security_console/security_console/presentation/providers/function_roles/function_roles_state.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DutyRoleFunctionRolesSelectionState {
@@ -88,7 +88,7 @@ class DutyRoleFunctionRolesSelectionNotifier extends StateNotifier<DutyRoleFunct
   Future<void> refresh() => _fetchPage(1, resetSearch: true);
 
   Future<void> _fetchPage(int page, {bool resetSearch = false}) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) {
       state = state.copyWith(isLoading: false, roles: const [], error: 'Select an enterprise to load function roles');
       return;

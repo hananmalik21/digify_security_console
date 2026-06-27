@@ -15,7 +15,7 @@ import 'package:digify_security_console/security_console/presentation/providers/
 import 'package:digify_security_console/security_console/presentation/providers/duty_roles/duty_role_function_roles_selection_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/duty_roles/duty_roles_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/duty_roles/duty_roles_state.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:digify_security_console/security_console/presentation/providers/security_functions/security_functions_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/security_modules/security_modules_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/security_lookups/security_lookups_provider.dart';
@@ -84,7 +84,7 @@ class _DutyRoleFormMobileSheetState extends ConsumerState<DutyRoleFormMobileShee
         _inheritedSearchController.clear();
       }
 
-      final enterpriseId = ref.read(securityManagerEnterpriseIdProvider);
+      final enterpriseId = ref.read(rolesManagementEnterpriseIdProvider);
       await Future.wait([
         ref.read(dutyRoleFunctionRolesSelectionProvider.notifier).refresh(),
         ref.read(securityModulesProvider.notifier).load(enterpriseId: enterpriseId),
@@ -220,7 +220,7 @@ class _DutyRoleFormMobileSheetState extends ConsumerState<DutyRoleFormMobileShee
     final isSubmitting = widget._isEdit
         ? ref.watch(dutyRolesProvider.select((state) => state.isUpdating))
         : ref.watch(dutyRolesProvider.select((state) => state.isCreating));
-    final enterpriseId = ref.watch(securityManagerEnterpriseIdProvider);
+    final enterpriseId = ref.watch(rolesManagementEnterpriseIdProvider);
     final categoriesAsync = (enterpriseId != null && enterpriseId > 0)
         ? ref.watch(dutyRoleCategoryLookupValuesProvider(enterpriseId))
         : const AsyncValue<List<SecurityLookupValue>>.data(<SecurityLookupValue>[]);

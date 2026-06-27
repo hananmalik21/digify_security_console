@@ -3,7 +3,7 @@ import 'package:digify_security_console/l10n/security_console_localizations.dart
 import 'package:digify_security_console/integration/sc_spreadsheet_export_provider.dart';
 import 'package:digify_core/services/responsive/responsive_extensions.dart';
 import 'package:digify_security_console/security_console/presentation/providers/job_roles/job_roles_provider.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:digify_security_console/security_console/presentation/widgets/roles_management/job_roles/job_roles_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,7 +35,7 @@ class _JobRolesTabContentState extends ConsumerState<JobRolesTabContent> {
   }
 
   void _onExport(SecurityConsoleLocalizations localizations) {
-    final enterpriseId = ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = ref.read(rolesManagementEnterpriseIdProvider);
     ref
         .read(spreadsheetExportProvider.notifier)
         .export(context, enterpriseId: enterpriseId, config: ScSpreadsheetExportConfigs.jobRoles(localizations));
@@ -43,7 +43,7 @@ class _JobRolesTabContentState extends ConsumerState<JobRolesTabContent> {
 
   @override
   Widget build(BuildContext context) {
-    ref.listen<int?>(securityManagerEnterpriseIdProvider, (previous, next) {
+    ref.listen<int?>(rolesManagementEnterpriseIdProvider, (previous, next) {
       if (previous != next) {
         ref.read(jobRolesProvider.notifier).refresh();
       }

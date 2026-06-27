@@ -10,7 +10,7 @@ import 'package:digify_security_console/security_console/presentation/providers/
 import 'package:digify_security_console/security_console/presentation/providers/job_roles/job_role_data_roles_selection_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/job_roles/job_role_form_inherited_picker_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/job_roles/job_roles_state.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final _jobRolesRepositoryProvider = Provider<JobRolesRepository>((ref) {
@@ -36,7 +36,7 @@ class JobRolesNotifier extends StateNotifier<JobRolesState> {
   }
 
   Future<void> refresh({bool showLoading = true}) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) {
       state = state.copyWith(isLoading: false, roles: const [], error: 'Select an enterprise to load job roles');
       return;
@@ -74,7 +74,7 @@ class JobRolesNotifier extends StateNotifier<JobRolesState> {
   }
 
   Future<bool> deleteJobRole(String jobRoleGuid) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null || jobRoleGuid.isEmpty) {
       return false;
     }
@@ -112,7 +112,7 @@ class JobRolesNotifier extends StateNotifier<JobRolesState> {
   Future<void> previousPage() => goToPage(state.currentPage - 1);
 
   Future<void> createJobRole(CreateJobRoleFormState formState) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) throw Exception('No enterprise selected');
 
     final body = _buildUpsertBody(
@@ -138,7 +138,7 @@ class JobRolesNotifier extends StateNotifier<JobRolesState> {
   }
 
   Future<void> updateJobRole({required String jobRoleGuid, required CreateJobRoleFormState formState}) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) throw Exception('No enterprise selected');
     if (jobRoleGuid.isEmpty) throw Exception('Invalid job role id');
 

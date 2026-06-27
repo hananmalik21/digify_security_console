@@ -6,7 +6,7 @@ import 'package:digify_core/constants/app_colors.dart';
 import 'package:digify_security_console/l10n/security_console_localizations.dart';
 import 'package:digify_core/widgets/common/digify_tab_header.dart';
 import 'package:digify_enterprise_structure/digify_enterprise_structure.dart';
-import '../providers/security_console_overview/security_manager_enterprise_provider.dart';
+import '../providers/shared/security_manager_module_enterprise_providers.dart';
 import '../widgets/security_console_overview/security_activity_and_roles_section.dart';
 import '../widgets/security_console_overview/security_stats_cards.dart';
 import '../widgets/security_console_overview/security_distribution_section.dart';
@@ -19,7 +19,7 @@ class SecurityOverviewScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final localizations = SecurityConsoleLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final effectiveEnterpriseId = ref.watch(securityManagerEnterpriseIdProvider);
+    final effectiveEnterpriseId = ref.watch(securityOverviewEnterpriseIdProvider);
 
     return Container(
       color: isDark ? AppColors.backgroundDark : AppColors.tableHeaderBackground,
@@ -37,7 +37,7 @@ class SecurityOverviewScreen extends ConsumerWidget {
             EnterpriseSelectorWidget(
               selectedEnterpriseId: effectiveEnterpriseId,
               onEnterpriseChanged: (enterpriseId) {
-                ref.read(securityManagerSelectedEnterpriseProvider.notifier).setEnterpriseId(enterpriseId);
+                ref.read(securityOverviewSelectedEnterpriseProvider.notifier).setEnterpriseId(enterpriseId);
               },
             ),
             Gap(24.h),

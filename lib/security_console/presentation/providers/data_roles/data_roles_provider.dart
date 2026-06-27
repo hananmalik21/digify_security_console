@@ -9,7 +9,7 @@ import 'package:digify_security_console/security_console/domain/usecases/get_dat
 import 'package:digify_security_console/security_console/domain/models/org_selection_node.dart';
 import 'package:digify_security_console/security_console/presentation/providers/data_roles/create_data_role_form_state.dart';
 import 'package:digify_security_console/security_console/presentation/providers/data_roles/data_roles_state.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:digify_security_console/security_console/presentation/providers/data_roles/security_manager_org_structure_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/security_lookups/security_lookups_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -43,7 +43,7 @@ class DataRolesNotifier extends StateNotifier<DataRolesState> {
   }
 
   Future<void> refresh({bool showLoading = true}) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) {
       state = state.copyWith(isLoading: false, roles: const [], error: 'Select an enterprise to load data roles');
       return;
@@ -81,7 +81,7 @@ class DataRolesNotifier extends StateNotifier<DataRolesState> {
   }
 
   Future<bool> deleteDataRole(String dataRoleGuid) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null || dataRoleGuid.isEmpty) return false;
 
     state = state.copyWith(deletingDataRoleGuid: dataRoleGuid, clearError: true);
@@ -112,7 +112,7 @@ class DataRolesNotifier extends StateNotifier<DataRolesState> {
   }
 
   Future<void> refreshDataTypeLookups() async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) return;
     _ref.invalidate(dataRoleDataTypeLookupValuesProvider(enterpriseId));
   }
@@ -129,7 +129,7 @@ class DataRolesNotifier extends StateNotifier<DataRolesState> {
   Future<void> previousPage() => goToPage(state.currentPage - 1);
 
   Future<void> createDataRole(CreateDataRoleFormState formState) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) throw Exception('No enterprise selected');
 
     final activeLevels = _ref.read(securityManagerOrgStructureNotifierProvider).orgStructure?.activeLevels ?? const [];
@@ -184,7 +184,7 @@ class DataRolesNotifier extends StateNotifier<DataRolesState> {
   }
 
   Future<void> updateDataRole({required String dataRoleGuid, required CreateDataRoleFormState formState}) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) throw Exception('No enterprise selected');
     if (dataRoleGuid.isEmpty) throw Exception('Invalid data role id');
 

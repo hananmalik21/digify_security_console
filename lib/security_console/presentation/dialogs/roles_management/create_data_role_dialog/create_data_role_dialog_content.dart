@@ -15,7 +15,7 @@ import 'package:digify_security_console/security_console/presentation/dialogs/ro
 import 'package:digify_security_console/security_console/presentation/providers/data_roles/create_data_role_form_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/data_roles/data_roles_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/data_roles/data_roles_state.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:digify_security_console/security_console/presentation/providers/security_lookups/security_lookups_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -67,7 +67,7 @@ class _CreateDataRoleDialogContentState extends ConsumerState<CreateDataRoleDial
     final formNotifier = ref.read(createDataRoleFormProvider.notifier);
     final dataRolesState = ref.watch(dataRolesProvider);
     final isCreating = dataRolesState.isCreating;
-    final enterpriseId = ref.watch(securityManagerEnterpriseIdProvider);
+    final enterpriseId = ref.watch(rolesManagementEnterpriseIdProvider);
     final dataTypeLookupAsync = (enterpriseId != null && enterpriseId > 0)
         ? ref.watch(dataRoleDataTypeLookupValuesProvider(enterpriseId))
         : const AsyncValue<List<SecurityLookupValue>>.data(<SecurityLookupValue>[]);

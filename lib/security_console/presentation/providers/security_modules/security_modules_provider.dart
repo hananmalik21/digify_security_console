@@ -4,7 +4,7 @@ import 'package:digify_security_console/security_console/data/repositories/secur
 import 'package:digify_security_console/security_console/domain/models/security_module.dart';
 import 'package:digify_security_console/security_console/domain/repositories/security_modules_repository.dart';
 import 'package:digify_security_console/security_console/domain/usecases/get_security_modules_use_case.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final _securityModulesRepositoryProvider = Provider<SecurityModulesRepository>((ref) {
@@ -75,9 +75,9 @@ class SecurityModulesNotifier extends StateNotifier<SecurityModulesState> {
   final Ref _ref;
 
   /// Loads modules for [enterpriseId], or resolves it from the Roles
-  /// Management tab selection via [securityManagerEnterpriseIdProvider].
+  /// Management tab selection via [rolesManagementEnterpriseIdProvider].
   Future<void> load({int? enterpriseId, int page = 1}) async {
-    final id = enterpriseId ?? _ref.read(securityManagerEnterpriseIdProvider);
+    final id = enterpriseId ?? _ref.read(rolesManagementEnterpriseIdProvider);
     if (id == null) {
       state = const SecurityModulesState(modules: [], isLoading: false, error: 'Select an enterprise to load modules');
       return;

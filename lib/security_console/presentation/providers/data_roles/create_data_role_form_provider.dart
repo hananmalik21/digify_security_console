@@ -5,7 +5,7 @@ import 'package:digify_security_console/security_console/presentation/providers/
 import 'package:digify_security_console/security_console/presentation/providers/data_roles/data_roles_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/data_roles/data_roles_state.dart';
 import 'package:digify_security_console/security_console/presentation/providers/data_roles/security_manager_org_structure_provider.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/domain/models/org_unit_hierarchy_item.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/domain/models/grade.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/domain/models/job_family.dart';
@@ -208,7 +208,7 @@ class CreateDataRoleFormNotifier extends StateNotifier<CreateDataRoleFormState> 
   }
 
   Future<void> _preloadOrgSelections(List<String> orgUnitIds) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null || enterpriseId <= 0) return;
 
     final repository = _ref.read(orgUnitRepositoryProvider);

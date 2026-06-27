@@ -4,7 +4,7 @@ import 'package:digify_security_console/security_console/workforce_bridge/employ
 import 'package:digify_security_console/security_console/data/config/roles_management/data_role_form_config.dart';
 import 'package:digify_security_console/security_console/presentation/dialogs/roles_management/create_data_role_dialog/widgets/create_data_role_shared_widgets.dart';
 import 'package:digify_security_console/security_console/presentation/providers/data_roles/create_data_role_form_provider.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/domain/models/grade.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/domain/models/job_family.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/domain/models/job_level.dart';
@@ -22,7 +22,7 @@ class CreateDataRoleWorkforceStructureStep extends ConsumerStatefulWidget {
 }
 
 class _CreateDataRoleWorkforceStructureStepState extends ConsumerState<CreateDataRoleWorkforceStructureStep> {
-  int get _enterpriseId => ref.read(securityManagerEnterpriseIdProvider) ?? 0;
+  int get _enterpriseId => ref.read(rolesManagementEnterpriseIdProvider) ?? 0;
 
   Future<void> _pickPositions() async {
     final current = ref.read(createDataRoleFormProvider).selectedPositions;

@@ -4,7 +4,7 @@ import 'package:digify_security_console/integration/sc_spreadsheet_export_provid
 import 'package:digify_core/services/responsive/responsive_extensions.dart';
 import 'package:digify_security_console/security_console/presentation/providers/data_roles/data_roles_provider.dart';
 import 'package:digify_security_console/security_console/domain/models/security_lookup_value.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:digify_security_console/security_console/presentation/providers/security_lookups/security_lookups_provider.dart';
 import 'package:digify_security_console/security_console/presentation/widgets/roles_management/data_roles/data_roles_widgets.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +37,7 @@ class _DataRolesTabContentState extends ConsumerState<DataRolesTabContent> {
   }
 
   void _onExport(SecurityConsoleLocalizations localizations) {
-    final enterpriseId = ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = ref.read(rolesManagementEnterpriseIdProvider);
     ref
         .read(spreadsheetExportProvider.notifier)
         .export(context, enterpriseId: enterpriseId, config: ScSpreadsheetExportConfigs.dataRoles(localizations));
@@ -45,7 +45,7 @@ class _DataRolesTabContentState extends ConsumerState<DataRolesTabContent> {
 
   @override
   Widget build(BuildContext context) {
-    ref.listen<int?>(securityManagerEnterpriseIdProvider, (previous, next) {
+    ref.listen<int?>(rolesManagementEnterpriseIdProvider, (previous, next) {
       if (previous != next && next != null) {
         ref.read(dataRolesProvider.notifier).refresh();
       }
@@ -54,7 +54,7 @@ class _DataRolesTabContentState extends ConsumerState<DataRolesTabContent> {
     final isMobile = context.isMobile;
     final state = ref.watch(dataRolesProvider);
     final notifier = ref.read(dataRolesProvider.notifier);
-    final enterpriseId = ref.watch(securityManagerEnterpriseIdProvider);
+    final enterpriseId = ref.watch(rolesManagementEnterpriseIdProvider);
     final localizations = SecurityConsoleLocalizations.of(context)!;
     final isExporting = ref.watch(spreadsheetExportProvider);
     final AsyncValue<List<SecurityLookupValue>> dataTypesAsync = enterpriseId == null

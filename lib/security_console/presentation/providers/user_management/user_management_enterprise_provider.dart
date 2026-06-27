@@ -24,6 +24,3 @@ final userManagementEnterpriseIdProvider = Provider<int?>((ref) {
   final active = ref.watch(activeEnterpriseIdProvider);
   return selected ?? active;
 });
-
-@Deprecated('Use userManagementEnterpriseIdProvider')
-final securityManagerEnterpriseIdProvider = userManagementEnterpriseIdProvider;

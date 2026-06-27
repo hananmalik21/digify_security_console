@@ -5,7 +5,7 @@ import 'package:digify_core/widgets/common/digify_tab_header.dart';
 import 'package:digify_enterprise_structure/digify_enterprise_structure.dart';
 import 'package:digify_security_console/security_console/presentation/providers/security_alerts/security_alerts_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/security_alerts/security_alerts_state.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:digify_security_console/security_console/presentation/widgets/security_alerts/security_alerts_activity_section.dart';
 import 'package:digify_security_console/security_console/presentation/widgets/security_alerts/security_alerts_filters_bar.dart';
 import 'package:digify_security_console/security_console/presentation/widgets/security_alerts/security_alerts_stats_cards.dart';
@@ -43,7 +43,7 @@ class _SecurityAlertsScreenState extends ConsumerState<SecurityAlertsScreen> {
     final isDark = context.isDark;
     final state = ref.watch(securityAlertsProvider);
     final notifier = ref.read(securityAlertsProvider.notifier);
-    final effectiveEnterpriseId = ref.watch(securityManagerEnterpriseIdProvider);
+    final effectiveEnterpriseId = ref.watch(securityAlertsEnterpriseIdProvider);
     final filteredAlerts = notifier.filteredAlerts;
 
     return Container(
@@ -67,7 +67,7 @@ class _SecurityAlertsScreenState extends ConsumerState<SecurityAlertsScreen> {
             EnterpriseSelectorWidget(
               selectedEnterpriseId: effectiveEnterpriseId,
               onEnterpriseChanged: (enterpriseId) {
-                ref.read(securityManagerSelectedEnterpriseProvider.notifier).setEnterpriseId(enterpriseId);
+                ref.read(securityAlertsSelectedEnterpriseProvider.notifier).setEnterpriseId(enterpriseId);
               },
             ),
             Gap(24.h),

@@ -5,7 +5,7 @@ import 'package:digify_security_console/security_console/data/repositories/duty_
 import 'package:digify_security_console/security_console/domain/repositories/duty_roles_repository.dart';
 import 'package:digify_security_console/security_console/domain/usecases/get_duty_roles_use_case.dart';
 import 'package:digify_security_console/security_console/presentation/providers/duty_roles/duty_roles_state.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:digify_security_console/security_console/presentation/providers/security_lookups/security_lookups_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -33,7 +33,7 @@ class DutyRolesNotifier extends StateNotifier<DutyRolesState> {
 
   /// Full refresh — re-fetches roles (with active filters) and category lookups.
   Future<void> refresh({bool showLoading = true}) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) {
       state = state.copyWith(isLoading: false, roles: const [], error: 'Select an enterprise to load duty roles');
       return;
@@ -78,7 +78,7 @@ class DutyRolesNotifier extends StateNotifier<DutyRolesState> {
 
   /// Re-fetches only roles using the current search and category filters.
   Future<void> _fetchRoles() async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) return;
 
     state = state.copyWith(isLoading: true, clearError: true);
@@ -120,7 +120,7 @@ class DutyRolesNotifier extends StateNotifier<DutyRolesState> {
     DateTime? effectiveFrom,
     DateTime? expirationDate,
   }) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) throw Exception('Select an enterprise first.');
 
     state = state.copyWith(isUpdating: true, clearError: true);
@@ -153,7 +153,7 @@ class DutyRolesNotifier extends StateNotifier<DutyRolesState> {
   }
 
   Future<String?> deleteDutyRole(String dutyRoleGuid) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) {
       return 'Select an enterprise to delete duty roles.';
     }
@@ -219,7 +219,7 @@ class DutyRolesNotifier extends StateNotifier<DutyRolesState> {
     DateTime? effectiveFrom,
     DateTime? expirationDate,
   }) async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) throw Exception('Select an enterprise first.');
 
     state = state.copyWith(isCreating: true, clearError: true);

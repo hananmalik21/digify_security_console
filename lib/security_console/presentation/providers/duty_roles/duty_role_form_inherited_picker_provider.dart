@@ -4,7 +4,7 @@ import 'package:digify_security_console/security_console/data/repositories/duty_
 import 'package:digify_security_console/security_console/domain/usecases/get_duty_roles_use_case.dart';
 import 'package:digify_security_console/security_console/presentation/providers/duty_roles/duty_role_form_inherited_picker_state.dart';
 import 'package:digify_security_console/security_console/presentation/providers/duty_roles/duty_roles_state.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 export 'duty_role_form_inherited_picker_state.dart';
 
@@ -22,7 +22,7 @@ class DutyRoleFormInheritedPickerNotifier extends StateNotifier<DutyRoleFormInhe
   }
 
   Future<void> load() async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) {
       state = state.copyWith(isLoading: false, roles: const []);
       return;

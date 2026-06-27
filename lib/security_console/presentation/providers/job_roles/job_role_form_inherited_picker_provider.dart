@@ -6,7 +6,7 @@ import 'package:digify_security_console/security_console/domain/repositories/job
 import 'package:digify_security_console/security_console/domain/usecases/get_job_roles_use_case.dart';
 import 'package:digify_security_console/security_console/presentation/providers/job_roles/job_role_form_inherited_picker_state.dart';
 import 'package:digify_security_console/security_console/presentation/providers/job_roles/job_roles_state.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 export 'job_role_form_inherited_picker_state.dart';
@@ -35,7 +35,7 @@ class JobRoleFormInheritedPickerNotifier extends StateNotifier<JobRoleFormInheri
   }
 
   Future<void> load() async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) {
       state = state.copyWith(isLoading: false, roles: const []);
       return;

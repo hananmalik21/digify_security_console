@@ -3,7 +3,7 @@ import 'package:digify_security_console/security_console/domain/usecases/get_fun
 import 'package:digify_security_console/security_console/presentation/providers/function_roles/function_role_form_inherited_picker_state.dart';
 import 'package:digify_security_console/security_console/presentation/providers/function_roles/function_roles_dependencies.dart';
 import 'package:digify_security_console/security_console/presentation/providers/function_roles/function_roles_state.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FunctionRoleFormInheritedPickerNotifier extends StateNotifier<FunctionRoleFormInheritedPickerState> {
@@ -21,7 +21,7 @@ class FunctionRoleFormInheritedPickerNotifier extends StateNotifier<FunctionRole
   }
 
   Future<void> load() async {
-    final enterpriseId = _ref.read(securityManagerEnterpriseIdProvider);
+    final enterpriseId = _ref.read(rolesManagementEnterpriseIdProvider);
     if (enterpriseId == null) {
       state = state.copyWith(roles: const [], isLoading: false);
       return;

@@ -10,7 +10,7 @@ import 'package:digify_security_console/security_console/presentation/dialogs/ro
 import 'package:digify_security_console/security_console/presentation/dialogs/roles_management/function_role_form_dialog/steps/role_details_step.dart';
 import 'package:digify_security_console/security_console/presentation/providers/function_roles/function_role_form_inherited_picker_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/function_roles/function_roles_provider.dart';
-import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
+import 'package:digify_security_console/security_console/presentation/providers/shared/security_manager_module_enterprise_providers.dart';
 import 'package:digify_security_console/security_console/presentation/providers/security_functions/security_functions_provider.dart';
 import 'package:digify_security_console/security_console/presentation/providers/security_modules/security_modules_provider.dart';
 import 'package:digify_security_console/gen/assets.gen.dart';
@@ -50,7 +50,7 @@ class _CreateFunctionRoleDialogState extends ConsumerState<CreateFunctionRoleDia
     _inheritedRolesSearchController = TextEditingController();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final enterpriseId = ref.read(securityManagerEnterpriseIdProvider);
+      final enterpriseId = ref.read(rolesManagementEnterpriseIdProvider);
       final rolesNotifier = ref.read(functionRolesProvider.notifier);
       final inheritedNotifier = ref.read(functionRoleFormInheritedPickerProvider.notifier);
       rolesNotifier.initFormState(null);

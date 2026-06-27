@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../providers/security_policies/security_policies_provider.dart';
-import '../../providers/security_console_overview/security_manager_enterprise_provider.dart';
+import '../../providers/shared/security_manager_module_enterprise_providers.dart';
 import 'security_policies/password_policies_section.dart';
 import 'security_policies/session_auth_section.dart';
 import 'security_policies/widgets/security_policies_header.dart';
@@ -22,7 +22,7 @@ class SecurityPoliciesScreen extends ConsumerWidget {
     final notifier = ref.read(securityPoliciesProvider.notifier);
     final values = state.values;
     final isDark = context.isDark;
-    final effectiveEnterpriseId = ref.watch(securityManagerEnterpriseIdProvider);
+    final effectiveEnterpriseId = ref.watch(securityPoliciesEnterpriseIdProvider);
 
     return Container(
       color: isDark ? AppColors.backgroundDark : AppColors.tableHeaderBackground,
@@ -48,7 +48,7 @@ class SecurityPoliciesScreen extends ConsumerWidget {
                 EnterpriseSelectorWidget(
                   selectedEnterpriseId: effectiveEnterpriseId,
                   onEnterpriseChanged: (enterpriseId) {
-                    ref.read(securityManagerSelectedEnterpriseProvider.notifier).setEnterpriseId(enterpriseId);
+                    ref.read(securityPoliciesSelectedEnterpriseProvider.notifier).setEnterpriseId(enterpriseId);
                   },
                 ),
                 Gap(24.h),
