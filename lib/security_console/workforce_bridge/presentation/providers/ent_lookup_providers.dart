@@ -1,5 +1,4 @@
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/employee_management/domain/models/empl_lookup_value.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/data/datasources/ent_lookup_remote_data_source.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/data/repositories/ent_lookup_repository_impl.dart';
@@ -8,9 +7,7 @@ import 'package:digify_security_console/security_console/workforce_bridge/presen
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/providers/positions_enterprise_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _entLookupApiClientProvider = Provider<ApiClient>((ref) {
-  return ApiClient(baseUrl: ApiConfig.baseUrl);
-});
+final _entLookupApiClientProvider = scApiClientProvider;
 
 final entLookupRemoteDataSourceProvider = Provider<EntLookupRemoteDataSource>((ref) {
   return EntLookupRemoteDataSourceImpl(apiClient: ref.watch(_entLookupApiClientProvider));

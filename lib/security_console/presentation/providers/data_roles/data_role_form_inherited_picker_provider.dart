@@ -1,6 +1,5 @@
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
 import 'package:digify_core/network/exceptions.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/data/repositories/data_roles/data_roles_repository_impl.dart';
 import 'package:digify_security_console/security_console/domain/models/data_role.dart';
 import 'package:digify_security_console/security_console/domain/usecases/get_data_roles_use_case.dart';
@@ -93,7 +92,7 @@ class DataRoleFormInheritedPickerNotifier extends StateNotifier<DataRoleFormInhe
 
 final dataRoleFormInheritedPickerProvider =
     StateNotifierProvider.autoDispose<DataRoleFormInheritedPickerNotifier, DataRoleFormInheritedPickerState>((ref) {
-      final client = ApiClient(baseUrl: ApiConfig.baseUrl);
+      final client = ref.watch(scApiClientProvider);
       final repository = DataRolesRepositoryImpl(client);
       final useCase = GetDataRolesUseCase(repository);
       return DataRoleFormInheritedPickerNotifier(useCase, ref);

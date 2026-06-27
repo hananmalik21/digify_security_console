@@ -1,5 +1,4 @@
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/employee_management/data/datasources/empl_lookup_remote_data_source.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/employee_management/data/repositories/empl_lookup_repository_impl.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/employee_management/domain/models/empl_lookup_type.dart';
@@ -9,9 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 const List<String> demographicsStepTypeCodes = ['GENDER', 'NATIONALITY', 'MARITAL_STATUS', 'RELIGION'];
 
-final _emplLookupApiClientProvider = Provider<ApiClient>((ref) {
-  return ApiClient(baseUrl: ApiConfig.baseUrl);
-});
+final _emplLookupApiClientProvider = scApiClientProvider;
 
 final emplLookupRemoteDataSourceProvider = Provider<EmplLookupRemoteDataSource>((ref) {
   return EmplLookupRemoteDataSourceImpl(apiClient: ref.watch(_emplLookupApiClientProvider));

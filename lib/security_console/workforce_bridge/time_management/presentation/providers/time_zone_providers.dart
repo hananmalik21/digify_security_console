@@ -1,13 +1,10 @@
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
 import 'package:digify_core/network/exceptions.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/time_management/data/datasources/time_zone_remote_datasource.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/time_management/domain/models/time_zone.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _timeZoneApiClientProvider = Provider<ApiClient>((ref) {
-  return ApiClient(baseUrl: ApiConfig.baseUrl);
-});
+final _timeZoneApiClientProvider = scApiClientProvider;
 
 final timeZoneRemoteDataSourceProvider = Provider<TimeZoneRemoteDataSource>((ref) {
   return TimeZoneRemoteDataSourceImpl(apiClient: ref.watch(_timeZoneApiClientProvider));

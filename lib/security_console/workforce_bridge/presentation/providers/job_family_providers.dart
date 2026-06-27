@@ -1,7 +1,6 @@
 import 'package:digify_core/services/debouncer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_core/services/pagination_service.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/data/datasources/job_family_remote_datasource.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/data/repositories/job_family_repository_impl.dart';
@@ -18,9 +17,7 @@ import 'package:digify_security_console/security_console/workforce_bridge/presen
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/providers/positions_enterprise_provider.dart';
 
 // Providers for dependency injection
-final apiClientProvider = Provider<ApiClient>((ref) {
-  return ApiClient(baseUrl: ApiConfig.baseUrl);
-});
+final apiClientProvider = scApiClientProvider;
 
 final jobFamilyRemoteDataSourceProvider = Provider<JobFamilyRemoteDataSource>((ref) {
   final apiClient = ref.watch(apiClientProvider);

@@ -1,6 +1,5 @@
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
 import 'package:digify_core/network/api_endpoints.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/domain/models/job_role.dart';
 import 'package:digify_security_console/security_console/presentation/providers/user_management/user_management_enterprise_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,7 +45,7 @@ final userFormJobRolesProvider = FutureProvider.autoDispose<UserFormJobRolesPage
   final currentPage = ref.watch(userFormJobRolesCurrentPageProvider);
   final pageSize = ref.watch(userFormJobRolesPageSizeProvider);
 
-  final client = ApiClient(baseUrl: ApiConfig.baseUrl);
+  final client = ref.watch(scApiClientProvider);
   final response = await client.get(
     ApiEndpoints.securityJobRoles,
     queryParameters: {

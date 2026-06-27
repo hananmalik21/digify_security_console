@@ -1,6 +1,5 @@
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
 import 'package:digify_core/services/debouncer.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../data/datasources/user_management_remote_data_source.dart';
 import '../../../data/models/user_management/user_managment_status.dart';
@@ -158,9 +157,7 @@ class UserManagementNotifier extends StateNotifier<UserManagementState> {
   }
 }
 
-final _userManagementApiClientProvider = Provider<ApiClient>((ref) {
-  return ApiClient(baseUrl: ApiConfig.baseUrl);
-});
+final _userManagementApiClientProvider = scApiClientProvider;
 
 final userManagementRemoteDataSourceProvider = Provider<UserManagementRemoteDataSource>((ref) {
   return UserManagementRemoteDataSourceImpl(ref.watch(_userManagementApiClientProvider));

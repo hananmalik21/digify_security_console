@@ -1,5 +1,4 @@
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/data/repositories/security_lookups/security_lookups_repository_impl.dart';
 import 'package:digify_security_console/security_console/domain/constants/security_lookup_type_codes.dart';
 import 'package:digify_security_console/security_console/domain/models/security_lookup_type.dart';
@@ -9,9 +8,7 @@ import 'package:digify_security_console/security_console/domain/usecases/get_sec
 import 'package:digify_security_console/security_console/domain/usecases/get_security_lookup_values_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _securityLookupsApiClientProvider = Provider<ApiClient>((ref) {
-  return ApiClient(baseUrl: ApiConfig.baseUrl);
-});
+final _securityLookupsApiClientProvider = scApiClientProvider;
 
 final securityLookupsRepositoryProvider = Provider<SecurityLookupsRepository>((ref) {
   return SecurityLookupsRepositoryImpl(ref.watch(_securityLookupsApiClientProvider));

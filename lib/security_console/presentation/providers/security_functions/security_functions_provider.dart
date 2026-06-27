@@ -1,16 +1,13 @@
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
 import 'package:digify_core/network/exceptions.dart';
 import 'package:digify_core/services/debouncer.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/data/repositories/security_functions/security_functions_repository_impl.dart';
 import 'package:digify_security_console/security_console/domain/models/security_function.dart';
 import 'package:digify_security_console/security_console/domain/repositories/security_functions_repository.dart';
 import 'package:digify_security_console/security_console/domain/usecases/get_security_functions_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _securityFunctionsApiClientProvider = Provider<ApiClient>((ref) {
-  return ApiClient(baseUrl: ApiConfig.baseUrl);
-});
+final _securityFunctionsApiClientProvider = scApiClientProvider;
 
 final _securityFunctionsRepositoryProvider = Provider<SecurityFunctionsRepository>((ref) {
   return SecurityFunctionsRepositoryImpl(ref.watch(_securityFunctionsApiClientProvider));

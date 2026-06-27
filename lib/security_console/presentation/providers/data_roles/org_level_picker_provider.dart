@@ -1,6 +1,5 @@
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
 import 'package:digify_core/services/debouncer.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/data/datasources/org_unit_remote_datasource.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/data/repositories/org_unit_repository_impl.dart';
 import 'package:digify_security_console/security_console/workforce_bridge/domain/models/org_unit.dart';
@@ -9,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Security-manager-owned infrastructure providers — isolated from other modules.
 
-final _smApiClientProvider = Provider<ApiClient>((ref) => ApiClient(baseUrl: ApiConfig.baseUrl));
+final _smApiClientProvider = scApiClientProvider;
 
 final _smOrgUnitDataSourceProvider = Provider<OrgUnitRemoteDataSource>((ref) {
   return OrgUnitRemoteDataSourceImpl(apiClient: ref.read(_smApiClientProvider));

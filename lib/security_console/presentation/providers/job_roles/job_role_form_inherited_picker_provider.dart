@@ -1,6 +1,5 @@
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
 import 'package:digify_core/network/exceptions.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/data/repositories/job_roles/job_roles_repository_impl.dart';
 import 'package:digify_security_console/security_console/domain/models/job_role.dart';
 import 'package:digify_security_console/security_console/domain/repositories/job_roles_repository.dart';
@@ -13,7 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 export 'job_role_form_inherited_picker_state.dart';
 
 final _jobRoleInheritedPickerRepositoryProvider = Provider<JobRolesRepository>((ref) {
-  return JobRolesRepositoryImpl(ApiClient(baseUrl: ApiConfig.baseUrl));
+  return JobRolesRepositoryImpl(ref.watch(scApiClientProvider));
 });
 
 final _getJobRolesForInheritedPickerProvider = Provider<GetJobRolesUseCase>((ref) {

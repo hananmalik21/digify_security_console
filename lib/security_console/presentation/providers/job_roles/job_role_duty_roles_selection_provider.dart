@@ -1,7 +1,6 @@
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
 import 'package:digify_core/network/exceptions.dart';
 import 'package:digify_core/services/debouncer.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/data/repositories/duty_roles/duty_roles_repository_impl.dart';
 import 'package:digify_security_console/security_console/domain/usecases/get_duty_roles_use_case.dart';
 import 'package:digify_security_console/security_console/presentation/providers/duty_roles/duty_roles_state.dart';
@@ -131,7 +130,7 @@ class JobRoleDutyRolesSelectionNotifier extends StateNotifier<JobRoleDutyRolesSe
 
 final jobRoleDutyRolesSelectionProvider =
     StateNotifierProvider.autoDispose<JobRoleDutyRolesSelectionNotifier, JobRoleDutyRolesSelectionState>((ref) {
-      final client = ApiClient(baseUrl: ApiConfig.baseUrl);
+      final client = ref.watch(scApiClientProvider);
       final repository = DutyRolesRepositoryImpl(client);
       final useCase = GetDutyRolesUseCase(repository);
       return JobRoleDutyRolesSelectionNotifier(useCase, ref);

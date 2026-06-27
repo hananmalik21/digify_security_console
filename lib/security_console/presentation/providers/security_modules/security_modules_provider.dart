@@ -1,6 +1,5 @@
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
 import 'package:digify_core/network/exceptions.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/data/repositories/security_modules/security_modules_repository_impl.dart';
 import 'package:digify_security_console/security_console/domain/models/security_module.dart';
 import 'package:digify_security_console/security_console/domain/repositories/security_modules_repository.dart';
@@ -8,9 +7,7 @@ import 'package:digify_security_console/security_console/domain/usecases/get_sec
 import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _securityModulesApiClientProvider = Provider<ApiClient>((ref) {
-  return ApiClient(baseUrl: ApiConfig.baseUrl);
-});
+final _securityModulesApiClientProvider = scApiClientProvider;
 
 final _securityModulesRepositoryProvider = Provider<SecurityModulesRepository>((ref) {
   return SecurityModulesRepositoryImpl(ref.watch(_securityModulesApiClientProvider));

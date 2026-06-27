@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:digify_core/network/api_client.dart';
-import 'package:digify_core/network/api_config.dart';
 import 'package:digify_core/network/exceptions.dart';
+import 'package:digify_security_console/integration/sc_network_providers.dart';
 import 'package:digify_security_console/security_console/data/repositories/data_roles/data_roles_repository_impl.dart';
 import 'package:digify_security_console/security_console/domain/repositories/data_roles_repository.dart';
 import 'package:digify_security_console/security_console/domain/usecases/create_data_role_use_case.dart';
@@ -15,9 +14,7 @@ import 'package:digify_security_console/security_console/presentation/providers/
 import 'package:digify_security_console/security_console/presentation/providers/security_lookups/security_lookups_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _dataRolesApiClientProvider = Provider<ApiClient>((ref) {
-  return ApiClient(baseUrl: ApiConfig.baseUrl);
-});
+final _dataRolesApiClientProvider = scApiClientProvider;
 
 final _dataRolesRepositoryProvider = Provider<DataRolesRepository>((ref) {
   return DataRolesRepositoryImpl(ref.watch(_dataRolesApiClientProvider));
