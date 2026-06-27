@@ -134,7 +134,7 @@ final dutyRoleFunctionRolesSelectionProvider =
     StateNotifierProvider.autoDispose<DutyRoleFunctionRolesSelectionNotifier, DutyRoleFunctionRolesSelectionState>((
       ref,
     ) {
-      final client = ref.watch(scApiClientProvider);
+      final client = ref.watch(apiClientProvider);
       final repository = FunctionRolesRepositoryImpl(client);
       final useCase = GetFunctionRolesUseCase(repository);
       return DutyRoleFunctionRolesSelectionNotifier(useCase, ref);

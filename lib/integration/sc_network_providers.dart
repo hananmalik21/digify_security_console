@@ -15,4 +15,23 @@ final scApiClientProvider = Provider<ApiClient>((ref) {
   );
 });
 
+final apiClientProvider = scApiClientProvider;
+
 final scDioProvider = Provider<Dio>((ref) => ref.watch(scApiClientProvider).dio);
+
+final dioProvider = scDioProvider;
+
+List<Override> buildScNetworkHostOverrides({
+  required String Function(Ref ref) baseUrl,
+  required AuthTokenStorage Function(Ref ref) authStorage,
+}) =>
+    [
+      apiBaseUrlProvider.overrideWith(baseUrl),
+      authTokenStorageProvider.overrideWith(authStorage),
+      scApiClientProvider.overrideWith(
+        (ref) => ApiClient(
+          baseUrl: ref.watch(apiBaseUrlProvider),
+          authStorage: authStorage(ref),
+        ),
+      ),
+    ];

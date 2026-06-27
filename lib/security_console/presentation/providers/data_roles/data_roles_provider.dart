@@ -14,10 +14,8 @@ import 'package:digify_security_console/security_console/presentation/providers/
 import 'package:digify_security_console/security_console/presentation/providers/security_lookups/security_lookups_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _dataRolesApiClientProvider = scApiClientProvider;
-
 final _dataRolesRepositoryProvider = Provider<DataRolesRepository>((ref) {
-  return DataRolesRepositoryImpl(ref.watch(_dataRolesApiClientProvider));
+  return DataRolesRepositoryImpl(ref.watch(apiClientProvider));
 });
 
 final _getDataRolesUseCaseProvider = Provider<GetDataRolesUseCase>((ref) {

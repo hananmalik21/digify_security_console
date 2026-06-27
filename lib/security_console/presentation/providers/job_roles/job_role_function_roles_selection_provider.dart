@@ -140,7 +140,7 @@ class JobRoleFunctionRolesSelectionNotifier extends StateNotifier<JobRoleFunctio
 
 final jobRoleFunctionRolesSelectionProvider =
     StateNotifierProvider.autoDispose<JobRoleFunctionRolesSelectionNotifier, JobRoleFunctionRolesSelectionState>((ref) {
-      final client = ref.watch(scApiClientProvider);
+      final client = ref.watch(apiClientProvider);
       final repository = FunctionRolesRepositoryImpl(client);
       final useCase = GetFunctionRolesUseCase(repository);
       return JobRoleFunctionRolesSelectionNotifier(useCase, ref);

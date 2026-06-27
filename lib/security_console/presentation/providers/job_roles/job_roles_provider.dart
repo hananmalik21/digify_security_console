@@ -13,10 +13,8 @@ import 'package:digify_security_console/security_console/presentation/providers/
 import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _jobRolesApiClientProvider = scApiClientProvider;
-
 final _jobRolesRepositoryProvider = Provider<JobRolesRepository>((ref) {
-  return JobRolesRepositoryImpl(ref.watch(_jobRolesApiClientProvider));
+  return JobRolesRepositoryImpl(ref.watch(apiClientProvider));
 });
 
 final _getJobRolesUseCaseProvider = Provider<GetJobRolesUseCase>((ref) {

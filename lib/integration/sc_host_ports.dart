@@ -1,4 +1,3 @@
-/// Host-app extension points for HR-specific workforce and employee lookup data.
 library;
 
 export 'package:digify_security_console/security_console/workforce_bridge/employee_management/presentation/providers/employee_structure_providers.dart';

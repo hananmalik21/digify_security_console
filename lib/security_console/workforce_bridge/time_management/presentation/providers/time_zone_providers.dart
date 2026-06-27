@@ -4,10 +4,8 @@ import 'package:digify_security_console/security_console/workforce_bridge/time_m
 import 'package:digify_security_console/security_console/workforce_bridge/time_management/domain/models/time_zone.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _timeZoneApiClientProvider = scApiClientProvider;
-
 final timeZoneRemoteDataSourceProvider = Provider<TimeZoneRemoteDataSource>((ref) {
-  return TimeZoneRemoteDataSourceImpl(apiClient: ref.watch(_timeZoneApiClientProvider));
+  return TimeZoneRemoteDataSourceImpl(apiClient: ref.watch(apiClientProvider));
 });
 
 class TimeZoneState {

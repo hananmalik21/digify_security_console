@@ -12,7 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 export 'job_role_form_inherited_picker_state.dart';
 
 final _jobRoleInheritedPickerRepositoryProvider = Provider<JobRolesRepository>((ref) {
-  return JobRolesRepositoryImpl(ref.watch(scApiClientProvider));
+  return JobRolesRepositoryImpl(ref.watch(apiClientProvider));
 });
 
 final _getJobRolesForInheritedPickerProvider = Provider<GetJobRolesUseCase>((ref) {

@@ -4,10 +4,8 @@ import 'package:digify_security_console/security_console/domain/repositories/fun
 import 'package:digify_security_console/security_console/domain/usecases/get_function_roles_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final functionRolesApiClientProvider = scApiClientProvider;
-
 final functionRolesRepositoryProvider = Provider<FunctionRolesRepository>((ref) {
-  return FunctionRolesRepositoryImpl(ref.watch(functionRolesApiClientProvider));
+  return FunctionRolesRepositoryImpl(ref.watch(apiClientProvider));
 });
 
 final getFunctionRolesUseCaseProvider = Provider<GetFunctionRolesUseCase>((ref) {

@@ -8,10 +8,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 const List<String> demographicsStepTypeCodes = ['GENDER', 'NATIONALITY', 'MARITAL_STATUS', 'RELIGION'];
 
-final _emplLookupApiClientProvider = scApiClientProvider;
-
 final emplLookupRemoteDataSourceProvider = Provider<EmplLookupRemoteDataSource>((ref) {
-  return EmplLookupRemoteDataSourceImpl(apiClient: ref.watch(_emplLookupApiClientProvider));
+  return EmplLookupRemoteDataSourceImpl(apiClient: ref.watch(apiClientProvider));
 });
 
 final emplLookupRepositoryProvider = Provider<EmplLookupRepository>((ref) {

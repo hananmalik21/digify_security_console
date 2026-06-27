@@ -6,9 +6,6 @@ import 'package:digify_security_console/security_console/workforce_bridge/domain
 import 'package:digify_security_console/security_console/workforce_bridge/domain/repositories/employee_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// Dependency Injection Providers
-final apiClientProvider = scApiClientProvider;
-
 final employeeRemoteDataSourceProvider = Provider<EmployeeRemoteDataSource>((ref) {
   final apiClient = ref.watch(apiClientProvider);
   return EmployeeRemoteDataSourceImpl(apiClient: apiClient);

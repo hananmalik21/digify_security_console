@@ -7,10 +7,8 @@ import 'package:digify_security_console/security_console/domain/repositories/sec
 import 'package:digify_security_console/security_console/domain/usecases/get_security_functions_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _securityFunctionsApiClientProvider = scApiClientProvider;
-
 final _securityFunctionsRepositoryProvider = Provider<SecurityFunctionsRepository>((ref) {
-  return SecurityFunctionsRepositoryImpl(ref.watch(_securityFunctionsApiClientProvider));
+  return SecurityFunctionsRepositoryImpl(ref.watch(apiClientProvider));
 });
 
 final _getSecurityFunctionsUseCaseProvider = Provider<GetSecurityFunctionsUseCase>((ref) {

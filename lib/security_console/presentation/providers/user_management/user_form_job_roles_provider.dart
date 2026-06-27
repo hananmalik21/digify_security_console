@@ -45,7 +45,7 @@ final userFormJobRolesProvider = FutureProvider.autoDispose<UserFormJobRolesPage
   final currentPage = ref.watch(userFormJobRolesCurrentPageProvider);
   final pageSize = ref.watch(userFormJobRolesPageSizeProvider);
 
-  final client = ref.watch(scApiClientProvider);
+  final client = ref.watch(apiClientProvider);
   final response = await client.get(
     ApiEndpoints.securityJobRoles,
     queryParameters: {

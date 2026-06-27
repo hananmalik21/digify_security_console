@@ -8,10 +8,8 @@ import 'package:digify_security_console/security_console/domain/usecases/get_sec
 import 'package:digify_security_console/security_console/domain/usecases/get_security_lookup_values_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _securityLookupsApiClientProvider = scApiClientProvider;
-
 final securityLookupsRepositoryProvider = Provider<SecurityLookupsRepository>((ref) {
-  return SecurityLookupsRepositoryImpl(ref.watch(_securityLookupsApiClientProvider));
+  return SecurityLookupsRepositoryImpl(ref.watch(apiClientProvider));
 });
 
 final getSecurityLookupTypesUseCaseProvider = Provider<GetSecurityLookupTypesUseCase>((ref) {

@@ -92,7 +92,7 @@ class DataRoleFormInheritedPickerNotifier extends StateNotifier<DataRoleFormInhe
 
 final dataRoleFormInheritedPickerProvider =
     StateNotifierProvider.autoDispose<DataRoleFormInheritedPickerNotifier, DataRoleFormInheritedPickerState>((ref) {
-      final client = ref.watch(scApiClientProvider);
+      final client = ref.watch(apiClientProvider);
       final repository = DataRolesRepositoryImpl(client);
       final useCase = GetDataRolesUseCase(repository);
       return DataRoleFormInheritedPickerNotifier(useCase, ref);

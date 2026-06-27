@@ -68,7 +68,7 @@ class DutyRoleFormInheritedPickerNotifier extends StateNotifier<DutyRoleFormInhe
 
 final dutyRoleFormInheritedPickerProvider =
     StateNotifierProvider.autoDispose<DutyRoleFormInheritedPickerNotifier, DutyRoleFormInheritedPickerState>((ref) {
-      final client = ref.watch(scApiClientProvider);
+      final client = ref.watch(apiClientProvider);
       final repository = DutyRolesRepositoryImpl(client);
       final useCase = GetDutyRolesUseCase(repository);
       return DutyRoleFormInheritedPickerNotifier(useCase, ref);

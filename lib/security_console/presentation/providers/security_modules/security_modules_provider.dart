@@ -7,10 +7,8 @@ import 'package:digify_security_console/security_console/domain/usecases/get_sec
 import 'package:digify_security_console/security_console/presentation/providers/security_console_overview/security_manager_enterprise_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _securityModulesApiClientProvider = scApiClientProvider;
-
 final _securityModulesRepositoryProvider = Provider<SecurityModulesRepository>((ref) {
-  return SecurityModulesRepositoryImpl(ref.watch(_securityModulesApiClientProvider));
+  return SecurityModulesRepositoryImpl(ref.watch(apiClientProvider));
 });
 
 final _getSecurityModulesUseCaseProvider = Provider<GetSecurityModulesUseCase>((ref) {

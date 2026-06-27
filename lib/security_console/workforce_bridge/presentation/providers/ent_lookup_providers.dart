@@ -7,10 +7,8 @@ import 'package:digify_security_console/security_console/workforce_bridge/presen
 import 'package:digify_security_console/security_console/workforce_bridge/presentation/providers/positions_enterprise_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _entLookupApiClientProvider = scApiClientProvider;
-
 final entLookupRemoteDataSourceProvider = Provider<EntLookupRemoteDataSource>((ref) {
-  return EntLookupRemoteDataSourceImpl(apiClient: ref.watch(_entLookupApiClientProvider));
+  return EntLookupRemoteDataSourceImpl(apiClient: ref.watch(apiClientProvider));
 });
 
 final entLookupRepositoryProvider = Provider<EntLookupRepository>((ref) {

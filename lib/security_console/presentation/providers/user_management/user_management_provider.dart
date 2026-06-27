@@ -157,10 +157,8 @@ class UserManagementNotifier extends StateNotifier<UserManagementState> {
   }
 }
 
-final _userManagementApiClientProvider = scApiClientProvider;
-
 final userManagementRemoteDataSourceProvider = Provider<UserManagementRemoteDataSource>((ref) {
-  return UserManagementRemoteDataSourceImpl(ref.watch(_userManagementApiClientProvider));
+  return UserManagementRemoteDataSourceImpl(ref.watch(apiClientProvider));
 });
 
 final userManagementRepositoryProvider = Provider<UserManagementRepository>((ref) {

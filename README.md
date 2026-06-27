@@ -44,7 +44,7 @@ import 'package:digify_core/providers/current_user_provider.dart';
 
 ProviderScope(
   overrides: [
-    ...buildSecurityConsoleHostOverrides(), // host-specific wiring
+    ...buildSecurityConsoleHostOverrides(),
     activeEnterpriseIdProvider.overrideWith((ref) => ref.watch(yourActiveEnterpriseIdProvider)),
   ],
   child: MyApp(),

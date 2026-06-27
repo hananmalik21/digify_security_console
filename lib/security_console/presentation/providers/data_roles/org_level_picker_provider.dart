@@ -6,12 +6,8 @@ import 'package:digify_security_console/security_console/workforce_bridge/domain
 import 'package:digify_security_console/security_console/workforce_bridge/domain/usecases/get_org_units_by_level_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// Security-manager-owned infrastructure providers — isolated from other modules.
-
-final _smApiClientProvider = scApiClientProvider;
-
 final _smOrgUnitDataSourceProvider = Provider<OrgUnitRemoteDataSource>((ref) {
-  return OrgUnitRemoteDataSourceImpl(apiClient: ref.read(_smApiClientProvider));
+  return OrgUnitRemoteDataSourceImpl(apiClient: ref.read(apiClientProvider));
 });
 
 final _smGetOrgUnitsByLevelUseCaseProvider = Provider<GetOrgUnitsByLevelUseCase>((ref) {
